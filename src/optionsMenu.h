@@ -19,6 +19,7 @@ void printMenu(void);
  * \param Loan *loanList
  * \param len
  * \param option is the number entered by the user
+ * \param count is the customer accountant
  * \return (-1) if invalid option. (0) if OK.
  *
  */
