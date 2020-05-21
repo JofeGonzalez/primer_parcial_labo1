@@ -23,7 +23,11 @@ void printMenu(void) {
 	printf("9. Informar Clientes\n");
 	printf("	a) Cliente con mas prestamos activos\n");
 	printf("	b) Cliente con mas prestamos saldados\n");
+	printf("	c) Cliente con mas prestamos\n");
 	printf("10. Informar Prestamos\n");
+	printf("    a) Prestamos de importe mayor a 1000\n");
+	printf("    b) Prestamos de 12 cuotas saldados\n");
+	printf("    c) Prestamos por cuotas\n");
 }
 
 int optionMenu(int option, Client *clientList, Loan *loanList, int len,
@@ -44,6 +48,8 @@ int optionMenu(int option, Client *clientList, Loan *loanList, int len,
 	char resumeLoanOption;
 	int resumeLoanDone;
 	float printAmount;
+	char printLoanOption;
+	int printEspecificFeesLoans;
 	switch (option) {
 	case 1:
 		addClientDone = chargeClientData(clientList, len);
@@ -203,6 +209,9 @@ int optionMenu(int option, Client *clientList, Loan *loanList, int len,
 			case 'b':
 				printClientMorePayOffLoans(clientList, loanList, len);
 				break;
+			case 'c':
+				printClientMoreLoans(clientList, loanList, len);
+				break;
 			default:
 				printf("La opcion ingresada no es valida\n");
 				break;
@@ -213,10 +222,29 @@ int optionMenu(int option, Client *clientList, Loan *loanList, int len,
 		}
 		break;
 	case 10:
-		printf("Ingrese el monto: \n");
-		scanf("%f",&printAmount);
+		printf("Que desea Informar?");
+		scanf("%c", &printLoanOption);
 		setbuf(stdin, NULL);
-		printEspecificAmountLoans(loanList, len, printAmount);
+		switch (printLoanOption) {
+		case 'a':
+			printf("Ingrese el monto: \n");
+			scanf("%f", &printAmount);
+			setbuf(stdin, NULL);
+			printEspecificAmountLoans(loanList, len, printAmount);
+			break;
+		case 'b':
+			print12LoansFees(loanList, len);
+			break;
+		case 'c':
+			printf("Ingrese el numero de cuotas: \n");
+			scanf("%d", &printEspecificFeesLoans);
+			setbuf(stdin, NULL);
+			printEspecificFeesLoan(loanList, len, printEspecificFeesLoans);
+			break;
+		default:
+			printf("La opcion ingresada no es valida\n");
+			break;
+		}
 		break;
 	default:
 		printf("La opcion ingresada no es valida\n");
