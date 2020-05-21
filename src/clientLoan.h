@@ -59,3 +59,5 @@ int printClientMoreActiveLoans(Client *list1, Loan *list2, int len);
  * \return int
  */
 int printClientMorePayOffLoans(Client *list1, Loan *list2, int len);
+
+int printClientMoreLoans(Client *list1, Loan *list2, int len);

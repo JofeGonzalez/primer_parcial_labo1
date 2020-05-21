@@ -77,3 +77,7 @@ int resumeLoan(Loan *list, int id);
  * \return int
  */
 int printEspecificAmountLoans(Loan *list, int len, float amount);
+
+int print12LoansFees(Loan *list, int len);
+
+int printEspecificFeesLoan(Loan *list, int len, int fees);

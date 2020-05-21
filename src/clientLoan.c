@@ -164,3 +164,31 @@ int printClientMorePayOffLoans(Client *list1, Loan *list2, int len) {
 			newClient.lastName, newClient.cuil);
 	return 0;
 }
+
+int printClientMoreLoans(Client *list1, Loan *list2, int len) {
+	int i, j;
+	int count = 0;
+	int max = 0;
+	Client newClient;
+	printf("ID      Nombre      Apellido      CUIL      Prestamos\n");
+	for (i = 0; i < len; i++) {
+		if (list1[i].isEmpty != 1) {
+			for (j = 0; j < len; j++) {
+				if (list2[j].isEmpty != 1 && list1[i].ID == list2[j].clientID) {
+					count++;
+				}
+			}
+			if (count > max) {
+				max = count;
+				newClient.ID = list1[i].ID;
+				strcpy(newClient.name, list1[i].name);
+				strcpy(newClient.lastName, list1[i].lastName);
+				strcpy(newClient.cuil, list1[i].cuil);
+				count = 0;
+			}
+		}
+	}
+	printf("%d      %s      %s      %s      %d\n", newClient.ID + 1, newClient.name,
+			newClient.lastName, newClient.cuil, max);
+	return 0;
+}

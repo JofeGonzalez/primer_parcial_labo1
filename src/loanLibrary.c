@@ -115,8 +115,34 @@ int printEspecificAmountLoans(Loan *list, int len, float amount) {
 			}
 		}
 		printf("Cantidad de prestamos con ese monto: %d\n", count);
-	} else{
+	} else {
 		printf("El monto debe ser mayor a 1000\n");
 	}
+	return 0;
+}
+
+int print12LoansFees(Loan *list, int len) {
+	int i;
+	printf("ID      Monto      Cuotas\n");
+	for (i = 0; i < len; i++) {
+		if (list[i].isEmpty != 1 && list[i].feesAmount == 12) {
+			if (list[i].state == 0) {
+				printf("%d      %.2f      %d\n", list[i].ID + 1, list[i].amount,
+						list[i].feesAmount);
+			}
+		}
+	}
+	return 0;
+}
+
+int printEspecificFeesLoan(Loan *list, int len, int fees) {
+	int i;
+	int count = 0;
+	for (i = 0; i < len; i++) {
+		if (list[i].isEmpty != 1 && list[i].feesAmount == fees) {
+			count++;
+		}
+	}
+	printf("Cantidad de prestamos con ese monto: %d\n", count);
 	return 0;
 }
